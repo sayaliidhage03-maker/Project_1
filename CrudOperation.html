@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="fonts/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        let student = [];
+        const Addstudent = () => {
+            let id = document.getElementById("sId").value;
+            let name = document.getElementById("StudentName").value;
+            let qualification = document.getElementById("qualification").value;
+            let percentage = document.getElementById("percentage").value;
+
+            let st = { "sId": id, "StudentName": name, "qualification": qualification, "percentage": percentage };
+            student.push(st);
+            alert("student Added successfully")
+            Display();
+            clearData();
+        }
+        const Display = () => {
+            let i;
+            let data = "";
+            student.forEach(function (d, i) {
+                data += "<tr><td>" + d.sId + "</td><td>" + d.StudentName + "</td><td>" + d.qualification + "</td><td>" + d.percentage + "<td><input type='button' value='view' onclick='viewstudent(" + i + ")'/></td></td></tr>";
+            });
+            document.getElementById("tbldata").innerHTML = data;
+        }
+        const viewstudent = (p) => {
+            let s = student[p];
+
+            document.getElementById("sId").value = s.sId;
+            document.getElementById("StudentName").value = s.StudentName;
+            document.getElementById("qualification").value = s.qualification;
+            document.getElementById("percentage").value = s.percentage;
+        }
+        const clearData = () => {
+            document.getElementById("sId").value = "";
+            document.getElementById("StudentName").value = "";
+            document.getElementById("qualification").value = "";
+            document.getElementById("percentage").value = "";
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header" style="background-color: rgb(161, 223, 236);">
+                    <h3 class="card-title">Student Form</h3>
+                </div>
+                <div class="card-body" style="background-color: rgb(161, 223, 236);">
+                    <div class="mb-3">
+                        <label>Student Id</label>
+                        <input type="text" id="sId" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Student Name</label>
+                        <input type="text" id="StudentName" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Qualification</label>
+                        <input type="text" id="qualification" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Percentage</label>
+                        <input type="text" id="percentage" class="form-control" />
+                    </div>
+                    <div class="card-footer">
+                        <input type="button" value="Submit" class="btn btn-outline-primary" onclick="Addstudent()" />
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-8">
+            <table class=" table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student Id</th>
+                        <th>Student Name</th>
+                        <th>Qualification</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody id="tbldata"></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
